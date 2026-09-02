@@ -1,61 +1,73 @@
 ---
 name: scaffold-docs
-description: Scaffold or backfill a project's required documentation set (README, AGENTS, PRD, ARCHITECTURE, DECISIONS, specs) from scratch. Use when the user asks to create/initialize project docs, start a new project's documentation, set up the docs folder, or fill in a missing doc that the global standard requires.
+description: 从零开始搭建或补全项目所需的文档集（README、AGENTS、PRD、ARCHITECTURE、DECISIONS、specs）。当用户要求创建/初始化项目文档、开始新项目的文档工作、搭建文档目录，或补全全局标准所要求的缺失文档时使用。
 ---
 
-# Scaffold Docs
+## 概览
 
-Generate or backfill a project's minimum documentation skeleton according to the global "Project Documentation Minimum Structure (mandatory)" standard defined in `~/.claude/CLAUDE.md`.
+生成或补全项目的最小文档骨架。
 
-## When to use (triggers)
+```
+项目根目录/
+├── README.md
+├── AGENTS.md
+└── docs/
+    ├── PRD.md
+    ├── ARCHITECTURE.md
+    ├── DECISIONS.md
+    └── specs/
+        └── module-*.md
+```
 
-- The user says "initialize docs / scaffold project docs / set up the docs skeleton / scaffold docs / backfill docs".
-- The user starts a new project and needs README, AGENTS, PRD, ARCHITECTURE, DECISIONS, and specs laid out at once.
-- The user finds a required doc missing and wants it filled in.
+## 使用时机（触发条件）
 
-## Global constraints (from CLAUDE.md)
+- 用户说「初始化文档 / 搭建项目文档 / 搭建文档骨架 / scaffold docs / 补全文档」。
+- 用户启动新项目，需要一次性铺设 README、AGENTS、PRD、ARCHITECTURE、DECISIONS 及 specs。
+- 用户发现某个必需文档缺失，希望补上。
 
-- Any project's documentation writing/update MUST satisfy this minimum structure.
-- Each document has a clear, non-overlapping responsibility.
-- README and AGENTS must NOT carry implementation details.
+## 全局约束
 
-## Steps
+- 任何项目的文档编写/更新都必须满足此最小结构。
+- 每份文档职责清晰、不重叠。
+- README 和 AGENTS 不得承载实现细节。
 
-1. Identify the project root and existing files (use `ls` / read the directory) to avoid overwriting docs that already exist.
-2. If a file already exists, do NOT rewrite it wholesale; only append the missing required sections while preserving its original content.
-3. Generate missing files from the templates below, filling in REAL, specific content — do not leave a blank template for the owner to guess.
-4. Note on language: the language of the generated docs is determined by the user's conversation context — not locked to English. The skeleton below uses English headings for portability.
-5. After finishing, list the created/updated files and briefly state each one's responsibility so the owner can verify.
+## 步骤
 
-## File templates
+1. 确认项目根目录及已有文件（用 `ls` / 读取目录），避免覆盖已存在的文档。
+2. 若文件已存在，不得整体重写；仅在保留原有内容的前提下追加缺失的必需章节。
+3. 使用下方模板生成缺失文件，填入真实、具体的内容——不要留下空白模板让项目所有者猜测。
+4. 语言说明：生成文档的语言由用户的对话语境决定——不锁定为英文。下方骨架使用英文标题是为了通用性。
+5. 完成后，列出已创建/更新的文件，并简要说明每份文件的职责，以便项目所有者核查。
+
+## 文件模板
 
 ### README.md
 
+README 不承担项目的完整文档职责；详情见 docs/。
+
 ```
-# <Project Name>
+# <项目名称>
 
-<One sentence describing what this project is>
+<一句话描述本项目是什么>
 
-## What is this?
-- Positioning:
-- Core problem solved:
+## 这是什么？
+- 定位：
+- 解决的核心问题：
 
-## Why does it exist?
-- Background / motivation:
+## 为什么存在？
+- 背景 / 动机：
 
-## How to install and run?
-- Requirements:
-- Install steps:
-- Run / start:
+## 如何安装和运行？
+- 前置要求：
+- 安装步骤：
+- 运行 / 启动：
 
-## Current status
-- Stage: prototype / in development / stable / maintenance
-- Known limitations:
+## 当前状态
+- 阶段：原型 / 开发中 / 稳定 / 维护
+- 已知限制：
 
-## Core tech
-- Languages / frameworks / key dependencies:
-
-> Note: README does not carry the project's full documentation duty; details live in docs/.
+## 核心技术
+- 语言 / 框架 / 关键依赖：
 ```
 
 ### AGENTS.md
@@ -63,79 +75,79 @@ Generate or backfill a project's minimum documentation skeleton according to the
 ```
 # AGENTS.md
 
-<One-sentence intro to help the Agent locate the project quickly>
+<一句话介绍，帮助 Agent 快速定位项目>
 
-## Overview
-- What this project is:
+## 概述
+- 本项目是什么：
 
-## Boundaries and scope
-- In scope:
-- Non-Goals (explicitly out of scope):
+## 边界与范围
+- 范围内：
+- 非目标（明确排除）：
 
-## Agent operating guide
-- How to understand this project:
-- Global rules / conventions:
+## Agent 操作指南
+- 如何理解本项目：
+- 全局规则 / 约定：
 
-## Directory cheat-sheet
-- <path> — <responsibility>
+## 目录速查
+- <路径> — <职责>
 ```
 
 ### docs/PRD.md
 
+PRD 关注行为与价值，而非代码实现。
+
 ```
-# PRD — <Product / Feature Name>
+# PRD — <产品 / 功能名称>
 
-## Product goals
-- Goals to achieve:
+## 产品目标
+- 要达成的目标：
 
-## Users and usage scenarios
-- Target users:
-- Typical scenarios:
+## 用户与使用场景
+- 目标用户：
+- 典型场景：
 
-## Core problem
-- Key problem to solve:
+## 核心问题
+- 要解决的关键问题：
 
-## Features and their meaning
-| Feature | What it solves | Why it's needed |
-|---------|----------------|-----------------|
-|         |                |                 |
+## 功能及其意义
+| 功能 | 解决什么 | 为什么需要 |
+|------|----------|------------|
+|      |          |            |
 
-## Relationships between features
+## 功能之间的关系
 -
 
-## Scope and Non-Goals
-- In scope:
-- Out of scope:
-
-> PRD focuses on behavior and value, not code implementation.
+## 范围与非目标
+- 范围内：
+- 范围外：
 ```
 
 ### docs/ARCHITECTURE.md
 
+ARCHITECTURE 描述的是稳定结构，而非每次代码变更。
+
 ```
-# ARCHITECTURE — <System Name>
+# ARCHITECTURE — <系统名称>
 
-## System overview
-- Overall structure (ASCII diagram welcome):
+## 系统概述
+- 整体结构（欢迎使用 ASCII 图）：
 
-## Core modules
-| Module | Responsibility |
-|--------|----------------|
-|        |                |
+## 核心模块
+| 模块 | 职责 |
+|------|------|
+|      |      |
 
-## Module relationships
+## 模块关系
 -
 
-## Data flow
+## 数据流
 -
 
-## External systems
+## 外部系统
 -
 
-## Important technical boundaries
+## 重要技术边界
 -
-
-> ARCHITECTURE describes the stable structure, not every code change.
 ```
 
 ### docs/DECISIONS.md
@@ -143,54 +155,54 @@ Generate or backfill a project's minimum documentation skeleton according to the
 ```
 # DECISIONS
 
-## ADR-<number>: <Decision Title>
-- Date:
-- Status: accepted / alternative / deprecated
-- Context (what problem was encountered):
-- Options considered:
-- Decision:
-- Why this one:
-- Why not the others:
-- Consequences:
-- When to revisit:
+## ADR-<编号>：<决策标题>
+- 日期：
+- 状态：已采纳 / 备选 / 已废弃
+- 背景（遇到了什么问题）：
+- 考虑过的方案：
+- 决策：
+- 为什么选这个：
+- 为什么不选其他：
+- 后果：
+- 何时重新审视：
 ```
 
 ### docs/specs/module-*.md
 
 ```
-# Spec — <Module Name>
+# Spec — <模块名称>
 
-## What to build
-- Goal:
+## 要构建什么
+- 目标：
 
-## Behavior
-- Expected behavior:
+## 行为
+- 预期行为：
 
-## Input / Output
-- Input:
-- Output:
+## 输入 / 输出
+- 输入：
+- 输出：
 
-## Constraints
+## 约束
 -
 
-## Boundary conditions
+## 边界条件
 -
 
-## Acceptance criteria
+## 验收标准
 - [ ]
 
-## Done definition
-- How to tell it's complete:
+## 完成定义
+- 如何判定已完成：
 ```
 
-## Acceptance criteria
+## 验收标准
 
-- [ ] README / AGENTS / PRD / ARCHITECTURE / DECISIONS all exist and are non-empty.
-- [ ] specs/ is filled in gradually as concrete modules are raised (do not invent modules; add them when the owner specifies one).
-- [ ] Responsibilities do not overlap; README and AGENTS contain no implementation details.
-- [ ] Content is based on the project's real information, not pure placeholders.
+- [ ] README / AGENTS / PRD / ARCHITECTURE / DECISIONS 全部存在且非空。
+- [ ] specs/ 随具体模块的提出而逐步填充（不要凭空编造模块，项目所有者指定时再添加）。
+- [ ] 职责不重叠；README 和 AGENTS 不包含实现细节。
+- [ ] 内容基于项目的真实信息填写，而非纯占位符。
 
-## Boundaries
+## 边界
 
-- Do not substitute for product/technical decisions: if critical information is missing, ask the owner before filling in — do not fabricate facts.
-- Do not write concrete code implementation outside of PRD or ARCHITECTURE.
+- 不得替代产品/技术决策：若关键信息缺失，应先向项目所有者确认再填写——不得捏造事实。
+- 不得在 PRD 或 ARCHITECTURE 之外编写具体的代码实现。
